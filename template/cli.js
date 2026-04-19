@@ -10812,9 +10812,7 @@ async function main() {
         const slug = args[2];
         const description = args[3];
         if (!title || !slug || !description) {
-          return fail(
-            "memory-md add-feature requires: title slug description"
-          );
+          return fail("memory-md add-feature requires: title slug description");
         }
         addFeatureToMemory(projectRoot, title, slug, description);
         return ok({ feature: "added to MEMORY.md" });

@@ -42,4 +42,6 @@ Parse the result and report:
   Entities:      <count>
   API endpoints: <count>
   Last updated:  <timestamp>
+
+Next step: /specifico:status
 ```

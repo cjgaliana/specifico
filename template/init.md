@@ -160,6 +160,7 @@ $CLI memory-md add-pattern "Server-side session management"
   Existing features: <M> features documented
 
   The MEMORY.md will be updated each time specs are merged.
-  Run /specifico:spec "<feature>" to create your first spec.
+
+Next step: /specifico:spec
 ```
 

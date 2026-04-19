@@ -55,7 +55,13 @@ Blockers: <none / list>
 Last Decision:
   <last entry from DECISIONS.md>
 
-Recommended: /specifico:<next-command>
+Recommended:
+  - If phase is "spec":    /specifico:plan <ID>
+  - If phase is "plan":    /specifico:tasks <ID>
+  - If phase is "tasks":   /specifico:implement <ID>
+  - If phase is "execute": /specifico:verify <ID>
+  - If phase is "verify":  /specifico:merge <ID>
+  - If phase is "merged":  /specifico:spec (to create next feature)
 ```
 
 Legend: ✓ = done, ● = ready to execute, ○ = waiting on dependencies

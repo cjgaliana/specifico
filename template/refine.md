@@ -81,5 +81,5 @@ Note: This may require multiple transitions (e.g., from `execute` back to `spec`
   Changed: <artifact>
   State reset to: <phase>
 
-Next step: /specifico:<phase>
+Next step: /specifico:plan (if reset to spec/plan) OR /specifico:tasks (if reset to tasks) OR /specifico:execute (if reset to execute)
 ```
