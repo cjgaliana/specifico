@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 
-const fs = require("fs");
-const path = require("path");
-const readline = require("readline");
+const fs = require("node:fs");
+const path = require("node:path");
+const readline = require("node:readline");
 
 const templateDir = path.join(__dirname, "..", "template");
 const targetDir = path.join(process.cwd(), ".claude", "commands", "specifico");
@@ -14,8 +14,8 @@ function ask(question) {
 }
 
 async function main() {
-  const args = process.argv.slice(2);
-  const force = args.includes("--force") || args.includes("-f");
+  const args = new Set(process.argv.slice(2));
+  const force = args.has("--force") || args.has("-f");
 
   console.log("Specifico — SPEC-driven development for Claude Code\n");
 
@@ -45,6 +45,7 @@ async function main() {
 
   console.log(`✓ Installed ${files.length} files to:\n  ${targetDir}\n`);
   console.log("Available commands (open this project in Claude Code):\n");
+  console.log("  /specifico:init                   — bootstrap memory from an existing codebase");
   console.log("  /specifico:spec    \"<feature>\"   — create a new spec");
   console.log("  /specifico:plan                   — draft architecture plan");
   console.log("  /specifico:tasks                  — generate task list");

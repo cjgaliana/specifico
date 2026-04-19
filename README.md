@@ -27,7 +27,17 @@ npx specifico --force
 
 Open your project in Claude Code. All commands are available as `/specifico:<command>`.
 
-### Full lifecycle example
+### Adding Specifico to an existing repo
+
+If your repo already has code, run `/specifico:init` first. It scans the codebase for existing data models and API endpoints, confirms them with you, and writes an initial `MEMORY.json`. Future specs then conflict-check against these real contracts instead of starting from scratch.
+
+```
+/specifico:init
+/specifico:spec "add payment flow"
+...
+```
+
+### Full lifecycle example (new repo)
 
 ```
 /specifico:spec "build user authentication with JWT"
@@ -42,6 +52,16 @@ Open your project in Claude Code. All commands are available as `/specifico:<com
 ---
 
 ## Commands
+
+### `/specifico:init`
+
+Bootstraps Specifico in an existing repository. Scans the codebase for data model definitions (TypeScript interfaces, Prisma models, Pydantic/SQLAlchemy models, SQL tables, etc.) and API routes (Express, Next.js, FastAPI, NestJS, etc.), presents the findings for your review and correction, then writes the initial `specifico/MEMORY.json`.
+
+Also initialises `specifico/` and `.counter` if they don't exist yet.
+
+Run this once, before creating your first spec, when adding Specifico to a project that already has code.
+
+---
 
 ### `/specifico:spec "<feature>"`
 

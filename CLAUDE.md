@@ -32,7 +32,7 @@ There are no test or lint scripts configured.
 - [src/types.ts](src/types.ts) — Zod schemas for all domain types: `Phase`, `State`, `Entity`, `ApiEndpoint`, `Spec`, `Plan`, `Task`, `Memory`, conflict types.
 
 ### Template Slash Commands
-[template/](template/) contains `.md` files installed as Claude Code slash commands. Each command calls the bundled `cli.js` subprocess. Key commands: `spec.md`, `plan.md`, `tasks.md`, `execute.md`, `verify.md`, `merge.md`, `status.md`, `refine.md`, `memory-update.md`, `memory-rebuild.md`.
+[template/](template/) contains `.md` files installed as Claude Code slash commands. Each command calls the bundled `cli.js` subprocess. Key commands: `init.md` (bootstrap memory from existing codebase), `spec.md`, `plan.md`, `tasks.md`, `execute.md`, `verify.md`, `merge.md`, `status.md`, `refine.md`, `memory-update.md`, `memory-rebuild.md`.
 
 ### Storage Layout (inside the user's project)
 ```
