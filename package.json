@@ -2,6 +2,10 @@
   "name": "specifico",
   "version": "0.1.0",
   "description": "SPEC-driven development system for Claude Code",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cjgaliana/specifico.git"
+  },
   "bin": {
     "specifico": "./bin/install.js"
   },
