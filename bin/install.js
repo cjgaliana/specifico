@@ -49,7 +49,7 @@ async function main() {
   console.log("  /specifico:spec    \"<feature>\"   — create a new spec");
   console.log("  /specifico:plan                   — draft architecture plan");
   console.log("  /specifico:tasks                  — generate task list");
-  console.log("  /specifico:execute                — implement next task");
+  console.log("  /specifico:implement                — implement next task");
   console.log("  /specifico:verify                 — validate vs acceptance criteria");
   console.log("  /specifico:merge                  — merge completed spec");
   console.log("  /specifico:status                 — show progress");

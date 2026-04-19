@@ -43,8 +43,7 @@ If your repo already has code, run `/specifico:init` first. It scans the codebas
 /specifico:spec "build user authentication with JWT"
 /specifico:plan
 /specifico:tasks
-/specifico:execute        ← repeat until all tasks done
-/specifico:verify
+/specifico:implement        ← implements all tasks, verifies, fixes gaps — runs to completion
 /specifico:memory-update
 /specifico:merge
 ```
@@ -98,18 +97,25 @@ Transitions state: `plan → tasks`.
 
 ---
 
-### `/specifico:execute`
+### `/specifico:implement`
 
-Implements the next ready task (or a specific task if passed as argument). Claude Code writes the code, commits it, and updates task state.
+Runs the spec to completion in a single invocation:
+
+1. **Task loop** — implements each ready task in dependency order, commits, and marks it done. Repeats until no tasks remain.
+2. **Verify loop** — evaluates every acceptance criterion. If any fail, implements fixes and re-verifies. Repeats until all criteria pass.
+3. **Finalize** — transitions state to `verify` with `verifyPassed: true` and prompts for the next step.
 
 Before writing any code, checks MEMORY.json for entity/API contract conflicts — blocks if any are found.
 
-Commit format:
+Commit formats:
 ```
-specifico(001/T003): add JWT validation middleware
+specifico(001/T003): add JWT validation middleware   ← task commit
+specifico(001/fix): add missing rate limiting        ← verification fix commit
 ```
 
-Transitions state: `tasks → execute` (idempotent — safe to re-run).
+A specific task-id can be passed as the second argument to start from that task.
+
+Transitions state: `tasks → execute → verify`.
 
 ---
 

@@ -4,6 +4,8 @@ argument-hint: "<spec-id or leave empty>"
 allowed-tools: [Bash, Read, Glob, Grep, Write]
 ---
 
+> **Note:** `/specifico:implement` now runs the full implement → verify → fix loop automatically and only exits once all criteria pass. Use this command to re-run a standalone verification check on an already-executed spec (e.g. after a manual code change).
+
 You are executing `/specifico:verify` — evaluating the implementation against the spec's acceptance criteria.
 
 ## Setup
@@ -27,7 +29,7 @@ NEXT=$($CLI tasks next "$SPEC_DIR" | jq '.data')
 
 If NEXT is not null, abort:
 ```
-✗ Cannot verify: task <task-id> is still pending. Run /specifico:execute first.
+✗ Cannot verify: task <task-id> is still pending. Run /specifico:implement first.
 ```
 
 ### 3. Evaluate each acceptance criterion
@@ -96,5 +98,5 @@ Failing criteria:
   AC-5: <text>
     Gap: <explanation>
 
-Run /specifico:execute to fix the failing criteria, then re-run /specifico:verify.
+Run /specifico:implement to fix the failing criteria, then re-run /specifico:verify.
 ```
