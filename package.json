@@ -4,10 +4,10 @@
   "description": "SPEC-driven development system for Claude Code",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cjgaliana/specifico.git"
+    "url": "git+https://github.com/cjgaliana/specifico.git"
   },
   "bin": {
-    "specifico": "./bin/install.js"
+    "specifico": "bin/install.js"
   },
   "files": [
     "bin/",
