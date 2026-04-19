@@ -27,7 +27,7 @@ There are no test or lint scripts configured.
 - [src/memory.ts](src/memory.ts) — Contract memory: `MEMORY.json` registry tracking entities and API endpoints used for conflict detection.
 - [src/memory-md.ts](src/memory-md.ts) — Project memory in markdown format. Tracks tech stack, features, patterns, conventions, and architectural decisions. Updated via CLI commands.
 - [src/tasks.ts](src/tasks.ts) — Dependency graph for tasks, cycle detection, next-ready task calculation.
-- [src/git.ts](src/git.ts) — Wrapper over `simple-git`. Validates commit message format: `specifico(001/T003): <title>`.
+- [src/git.ts](src/git.ts) — Wrapper over `simple-git`. Validates commit message format: `specifico(001/T003): <title>` for tasks and `specifico(001/fix): <title>` for verification fixes.
 - [src/storage.ts](src/storage.ts) — File I/O for JSON/text, spec directory listing.
 - [src/id.ts](src/id.ts) — Next ID generation, delegates to journal for sequential spec IDs (`001`, `002`, …).
 - [src/journal.ts](src/journal.ts) — Journal registry (`journal.json`). Tracks all specs, their status, and phase. Provides ID generation by reading highest ID and incrementing.

@@ -19,7 +19,14 @@ PROJECT_ROOT="$(pwd)"
 
 ### 1. Resolve the spec and validate phase
 
-Phase must be `execute`. Abort if not.
+Phase must be `execute` or `verify`. Abort otherwise.
+
+If phase is `verify`, transition back to `execute` first to run a fresh verification pass:
+
+```bash
+$CLI state transition "$SPEC_DIR" execute
+$CLI journal update-spec "$ID" "execute" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+```
 
 ### 2. Confirm all tasks are done
 

@@ -1,6 +1,7 @@
 import simpleGit, { SimpleGit } from "simple-git";
 
-const COMMIT_RE = /^specifico\(\d{3}\/T\d{3}\): .+/;
+// Allow task commits and verification-fix commits.
+const COMMIT_RE = /^specifico\(\d{3}\/(T\d{3}|fix)\): .+/;
 
 function git(projectRoot: string): SimpleGit {
   return simpleGit(projectRoot);
@@ -8,18 +9,18 @@ function git(projectRoot: string): SimpleGit {
 
 export async function branchCreate(
   projectRoot: string,
-  branch: string
+  branch: string,
 ): Promise<void> {
   await git(projectRoot).checkoutLocalBranch(branch);
 }
 
 export async function commit(
   projectRoot: string,
-  message: string
+  message: string,
 ): Promise<string> {
   if (!COMMIT_RE.test(message)) {
     throw new Error(
-      `Commit message must match: specifico(<id>/T<n>): <title>. Got: "${message}"`
+      `Commit message must match: specifico(<id>/T<nnn>|fix): <title>. Got: "${message}"`,
     );
   }
   await git(projectRoot).add(".");
@@ -29,7 +30,7 @@ export async function commit(
 
 export async function mergeBranch(
   projectRoot: string,
-  branch: string
+  branch: string,
 ): Promise<void> {
   await git(projectRoot).merge(["--no-ff", branch]);
 }
@@ -41,15 +42,18 @@ export async function currentBranch(projectRoot: string): Promise<string> {
 
 export async function branchExists(
   projectRoot: string,
-  branch: string
+  branch: string,
 ): Promise<boolean> {
   const result = await git(projectRoot).branch(["-a"]);
   return Object.keys(result.branches).some(
-    (b) => b === branch || b === `remotes/origin/${branch}`
+    (b) => b === branch || b === `remotes/origin/${branch}`,
   );
 }
 
-export async function getSha(projectRoot: string, ref: string): Promise<string> {
+export async function getSha(
+  projectRoot: string,
+  ref: string,
+): Promise<string> {
   const result = await git(projectRoot).revparse([ref]);
   return result.trim();
 }

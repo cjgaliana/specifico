@@ -206,6 +206,7 @@ This prevents specs from silently diverging from each other over time.
 
 - One branch per spec: `specifico/<id>-<slug>`
 - One commit per task: `specifico(<id>/<task-id>): <title>`
+- Verification fix commits (when needed): `specifico(<id>/fix): <title>`
 - Merge into main only after verification passes
 
 ## License

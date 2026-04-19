@@ -17,7 +17,8 @@ PROJECT_ROOT="$(pwd)"
 
 ### 1. Read existing memory
 
-Read `$PROJECT_ROOT/specifico/MEMORY.json` if it exists. Note any existing entities, API endpoints, and architecture patterns that are relevant to this feature.
+Read `$PROJECT_ROOT/specifico/MEMORY.json` if it exists for existing entities and API endpoints.
+Read `$PROJECT_ROOT/specifico/MEMORY.md` if it exists for project features, architecture patterns, and conventions relevant to this feature.
 
 ### 2. Get the next spec ID
 
@@ -45,7 +46,7 @@ If `$ARGUMENTS` is a detailed description, extract the above from it directly.
 
 ### 5. Surface relevant memory
 
-From MEMORY.json, show the user any existing entities or API endpoints that overlap with what they described. Make it clear what contracts already exist and must not be broken.
+From MEMORY.json, show the user any existing entities or API endpoints that overlap with what they described. From MEMORY.md, surface relevant project context (patterns/conventions). Make it clear what contracts already exist and must not be broken.
 
 ### 6. Create the spec directory and branch
 
