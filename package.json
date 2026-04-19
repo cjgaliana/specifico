@@ -2,6 +2,18 @@
   "name": "specifico",
   "version": "0.1.0",
   "description": "SPEC-driven development system for Claude Code",
+  "license": "MIT",
+  "homepage": "https://spcifico.dev",
+  "bugs": {
+    "url": "https://github.com/cjgaliana/specifico/issues"
+  },
+  "keywords": [
+    "spec-driven",
+    "claude-code",
+    "development-workflow",
+    "git",
+    "automation"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cjgaliana/specifico.git"
