@@ -10,7 +10,12 @@ import {
   rebuildMemory,
 } from "./memory";
 import { readSpec, validateCompleteness } from "./spec";
-import { readTasks, nextReadyTask, markTaskDone, validateNoCycles } from "./tasks";
+import {
+  readTasks,
+  nextReadyTask,
+  markTaskDone,
+  validateNoCycles,
+} from "./tasks";
 import {
   readJournal,
   addSpecToJournal,
@@ -102,7 +107,13 @@ async function main(): Promise<void> {
         const conflicts = detectConflicts(memory, delta);
         const hasBlockers = conflicts.some((c) => c.severity === "block");
         if (hasBlockers) {
-          console.error(JSON.stringify({ success: false, error: "Conflicts detected", conflicts }));
+          console.error(
+            JSON.stringify({
+              success: false,
+              error: "Conflicts detected",
+              conflicts,
+            }),
+          );
           process.exit(1);
         }
         return ok({ conflicts });
@@ -113,7 +124,13 @@ async function main(): Promise<void> {
         const conflicts = detectConflicts(memory, delta);
         const hasBlockers = conflicts.some((c) => c.severity === "block");
         if (hasBlockers) {
-          console.error(JSON.stringify({ success: false, error: "Conflicts detected", conflicts }));
+          console.error(
+            JSON.stringify({
+              success: false,
+              error: "Conflicts detected",
+              conflicts,
+            }),
+          );
           process.exit(1);
         }
         const updated = applyDelta(memory, delta);
@@ -136,7 +153,13 @@ async function main(): Promise<void> {
         const spec = readSpec(specDir);
         const missing = validateCompleteness(spec);
         if (missing.length > 0) {
-          console.error(JSON.stringify({ success: false, error: "Incomplete spec", missing }));
+          console.error(
+            JSON.stringify({
+              success: false,
+              error: "Incomplete spec",
+              missing,
+            }),
+          );
           process.exit(1);
         }
         return ok({ valid: true });
@@ -182,7 +205,7 @@ async function main(): Promise<void> {
         const createdAt = args[6];
         if (!id || !slug || !title || !phase || !branch || !createdAt) {
           return fail(
-            "journal add-spec requires: id slug title phase branch createdAt"
+            "journal add-spec requires: id slug title phase branch createdAt",
           );
         }
         const journal = addSpecToJournal(
@@ -192,7 +215,7 @@ async function main(): Promise<void> {
           title,
           phase,
           branch,
-          createdAt
+          createdAt,
         );
         return ok(journal);
       }

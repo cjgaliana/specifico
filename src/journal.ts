@@ -68,7 +68,7 @@ export function addSpecToJournal(
   title: string,
   phase: string,
   branch: string,
-  createdAt: string
+  createdAt: string,
 ): Journal {
   const journal = readJournal(projectRoot);
 
@@ -95,7 +95,7 @@ export function updateSpecInJournal(
   projectRoot: string,
   id: string,
   phase: string,
-  updatedAt: string
+  updatedAt: string,
 ): Journal {
   const journal = readJournal(projectRoot);
   const spec = journal.specs.find((s) => s.id === id);
@@ -119,9 +119,7 @@ export function getNextId(projectRoot: string): string {
   }
 
   // Find the highest numeric ID
-  const highestId = Math.max(
-    ...journal.specs.map((s) => parseInt(s.id, 10))
-  );
+  const highestId = Math.max(...journal.specs.map((s) => parseInt(s.id, 10)));
 
   const next = highestId + 1;
   return String(next).padStart(3, "0");
@@ -146,7 +144,7 @@ export function rebuildJournalFromDirectory(projectRoot: string): Journal {
       });
     } catch (err) {
       console.warn(
-        `Warning: Could not read state from ${specDir}, skipping in journal rebuild`
+        `Warning: Could not read state from ${specDir}, skipping in journal rebuild`,
       );
     }
   }

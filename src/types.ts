@@ -77,7 +77,7 @@ export const SpecSchema = z.object({
         criterion: z.string(),
         verdict: z.enum(["pass", "fail", "partial"]),
         evidence: z.string().optional(),
-      })
+      }),
     )
     .optional(),
 });
