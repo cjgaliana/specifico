@@ -31,7 +31,7 @@ STATE=$($CLI state read "$SPEC_DIR")
 If phase is `verify` but `verifyPassed` is false:
 ```
 ✗ Cannot merge: verification did not pass.
-  Run /specifico:execute to fix failing criteria, then /specifico:verify again.
+  Run /specifico:implement to fix failing criteria, then /specifico:verify again.
 ```
 
 If phase is not `verify`:

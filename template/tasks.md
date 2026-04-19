@@ -95,5 +95,5 @@ $CLI journal update-spec "$ID" "tasks" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
   Tasks: N
   Execution order: T001 → T002 → T003 → ...
 
-Next step: /specifico:execute
+Next step: /specifico:implement
 ```

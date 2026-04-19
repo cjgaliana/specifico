@@ -2,7 +2,10 @@
 
 SPEC-driven development system for Claude Code. Enforces a structured, specification-first workflow where every feature follows a strict lifecycle: **spec → plan → tasks → execute → verify → merge**.
 
-Each feature lives on its own branch, produces structured artifacts (JSON + Markdown), and contributes to a shared memory of entities and API contracts that prevents inconsistency across your codebase.
+Each feature lives on its own branch, produces structured artifacts (JSON + Markdown), and contributes to shared project memory:
+
+- `MEMORY.md` for high-level project context (tech stack, features, patterns, conventions)
+- `MEMORY.json` for machine-checkable entity/API contracts used for conflict detection
 
 ## Install
 
@@ -29,7 +32,7 @@ Open your project in Claude Code. All commands are available as `/specifico:<com
 
 ### Adding Specifico to an existing repo
 
-If your repo already has code, run `/specifico:init` first. It scans the codebase for existing data models and API endpoints, confirms them with you, and writes an initial `MEMORY.json`. Future specs then conflict-check against these real contracts instead of starting from scratch.
+If your repo already has code, run `/specifico:init` first. It scans the codebase for existing architecture context, confirms findings with you, and writes an initial `MEMORY.md`.
 
 ```
 /specifico:init
@@ -54,9 +57,9 @@ If your repo already has code, run `/specifico:init` first. It scans the codebas
 
 ### `/specifico:init`
 
-Bootstraps Specifico in an existing repository. Scans the codebase for data model definitions (TypeScript interfaces, Prisma models, Pydantic/SQLAlchemy models, SQL tables, etc.) and API routes (Express, Next.js, FastAPI, NestJS, etc.), presents the findings for your review and correction, then writes the initial `specifico/MEMORY.json`.
+Bootstraps Specifico in an existing repository. Scans the codebase for technologies, implemented features, and architectural patterns, presents findings for your review, then writes the initial `specifico/MEMORY.md`.
 
-Also initialises `specifico/` and `.counter` if they don't exist yet.
+Also initializes `specifico/` and `journal.json` if they do not exist yet.
 
 Run this once, before creating your first spec, when adding Specifico to a project that already has code.
 
@@ -105,7 +108,7 @@ Runs the spec to completion in a single invocation:
 2. **Verify loop** — evaluates every acceptance criterion. If any fail, implements fixes and re-verifies. Repeats until all criteria pass.
 3. **Finalize** — transitions state to `verify` with `verifyPassed: true` and prompts for the next step.
 
-Before writing any code, checks MEMORY.json for entity/API contract conflicts — blocks if any are found.
+Before writing any code, checks `MEMORY.json` for entity/API contract conflicts and blocks if any are found.
 
 Commit formats:
 ```
@@ -168,7 +171,7 @@ Extracts entity and API endpoint definitions from a completed spec and merges th
 
 ### `/specifico:memory-rebuild`
 
-Reconstructs `MEMORY.json` from scratch by replaying all merged specs in order. Useful after manual edits or corruption.
+Reconstructs `specifico/MEMORY.json` from scratch by replaying all merged specs in order. Useful after manual edits or corruption.
 
 ---
 
@@ -178,8 +181,9 @@ All Specifico artifacts live in a `specifico/` folder at your project root (comm
 
 ```
 specifico/
-├── MEMORY.json                  ← shared entity/API registry
-├── .counter                     ← monotonic ID counter
+├── MEMORY.md                    ← project context memory (tech/features/patterns)
+├── MEMORY.json                  ← entity/API contract memory (conflict checking)
+├── journal.json                 ← registry of all specs and phases
 ├── 001-user-auth/
 │   ├── SPEC.md + SPEC.json
 │   ├── PLAN.md + PLAN.json
@@ -192,7 +196,9 @@ specifico/
 
 ## Memory system
 
-`MEMORY.json` accumulates the entities and API contracts introduced by each merged spec. Before executing any task, Specifico checks incoming entity/API definitions against memory and **blocks on conflicts** — type mismatches, removed fields, changed HTTP methods.
+`MEMORY.md` stores human-readable project context and evolves over time as specs are merged.
+
+`MEMORY.json` accumulates the entities and API contracts introduced by each merged spec. Before executing any task, Specifico checks incoming entity/API definitions against this contract memory and **blocks on conflicts** like type mismatches, removed fields, or changed HTTP methods.
 
 This prevents specs from silently diverging from each other over time.
 

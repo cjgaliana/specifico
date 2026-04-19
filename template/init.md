@@ -6,6 +6,8 @@ allowed-tools: [Bash, Read, Write, Glob, Grep]
 
 You are executing `/specifico:init` — bootstrapping Specifico in an existing repository by extracting its current tech stack and features into MEMORY.md.
 
+Note: this command initializes and refreshes project context memory (`MEMORY.md`). It does not rewrite legacy contract memory (`MEMORY.json`).
+
 ## Setup
 
 ```bash

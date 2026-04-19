@@ -44,7 +44,7 @@ Show the user what will be invalidated:
   The following will need to be re-run:
   - /specifico:plan       ← re-draft (if scope is spec)
   - /specifico:tasks      ← re-generate
-  - /specifico:execute    ← re-implement any affected tasks
+  - /specifico:implement  ← re-implement any affected tasks
   - /specifico:verify     ← re-verify
 
 Confirm? (yes/no)
@@ -81,5 +81,5 @@ Note: This may require multiple transitions (e.g., from `execute` back to `spec`
   Changed: <artifact>
   State reset to: <phase>
 
-Next step: /specifico:plan (if reset to spec/plan) OR /specifico:tasks (if reset to tasks) OR /specifico:execute (if reset to execute)
+Next step: /specifico:plan (if reset to spec or plan) OR /specifico:tasks (if reset to tasks) OR /specifico:implement
 ```
