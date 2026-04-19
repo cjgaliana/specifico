@@ -2,8 +2,16 @@
   "name": "specifico",
   "version": "0.1.0",
   "description": "SPEC-driven development system for Claude Code",
+  "bin": {
+    "specifico": "./bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "template/"
+  ],
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --platform=node --outfile=.claude/commands/specifico/cli.js"
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=template/cli.js && cp template/cli.js .claude/commands/specifico/cli.js",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "simple-git": "^3.27.0",
