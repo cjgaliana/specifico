@@ -1,0 +1,17 @@
+{
+  "name": "specifico",
+  "version": "0.1.0",
+  "description": "SPEC-driven development system for Claude Code",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=.claude/commands/specifico/cli.js"
+  },
+  "dependencies": {
+    "simple-git": "^3.27.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.21.0"
+  }
+}
