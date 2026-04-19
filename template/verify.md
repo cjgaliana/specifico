@@ -66,6 +66,7 @@ Update `$SPEC_DIR/SPEC.json` to include `verifyResults`:
 
 ```bash
 $CLI state transition "$SPEC_DIR" verify
+$CLI journal update-spec "$ID" "verify" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 ```
 
 Set `verifyPassed` based on whether all verdicts are `pass`:

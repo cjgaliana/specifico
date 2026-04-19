@@ -11,6 +11,12 @@ import {
 } from "./memory";
 import { readSpec, validateCompleteness } from "./spec";
 import { readTasks, nextReadyTask, markTaskDone, validateNoCycles } from "./tasks";
+import {
+  readJournal,
+  addSpecToJournal,
+  updateSpecInJournal,
+  rebuildJournalFromDirectory,
+} from "./journal";
 import { MemoryDeltaSchema, StateSchema, Phase } from "./types";
 import { ensureSpecificoDir, findSpecDirById } from "./storage";
 
@@ -157,6 +163,54 @@ async function main(): Promise<void> {
         return ok({ valid: true });
       }
       return fail(`Unknown tasks subcommand: ${sub}`);
+    }
+
+    // ── JOURNAL ───────────────────────────────────────────────────────────
+    if (cmd === "journal") {
+      const sub = args[0];
+
+      if (sub === "read") {
+        ensureSpecificoDir(projectRoot);
+        return ok(readJournal(projectRoot));
+      }
+      if (sub === "add-spec") {
+        const id = args[1];
+        const slug = args[2];
+        const title = args[3];
+        const phase = args[4];
+        const branch = args[5];
+        const createdAt = args[6];
+        if (!id || !slug || !title || !phase || !branch || !createdAt) {
+          return fail(
+            "journal add-spec requires: id slug title phase branch createdAt"
+          );
+        }
+        const journal = addSpecToJournal(
+          projectRoot,
+          id,
+          slug,
+          title,
+          phase,
+          branch,
+          createdAt
+        );
+        return ok(journal);
+      }
+      if (sub === "update-spec") {
+        const id = args[1];
+        const phase = args[2];
+        const updatedAt = args[3];
+        if (!id || !phase || !updatedAt) {
+          return fail("journal update-spec requires: id phase updatedAt");
+        }
+        const journal = updateSpecInJournal(projectRoot, id, phase, updatedAt);
+        return ok(journal);
+      }
+      if (sub === "rebuild") {
+        const journal = rebuildJournalFromDirectory(projectRoot);
+        return ok(journal);
+      }
+      return fail(`Unknown journal subcommand: ${sub}`);
     }
 
     fail(`Unknown command: ${cmd}`);

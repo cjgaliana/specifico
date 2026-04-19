@@ -97,6 +97,7 @@ Append the key architectural decision made during planning:
 
 ```bash
 $CLI state transition "$SPEC_DIR" plan
+$CLI journal update-spec "$ID" "plan" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 ```
 
 ### 10. Confirm

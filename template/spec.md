@@ -90,6 +90,12 @@ Write a human-readable SPEC.md to `$SPEC_DIR/SPEC.md` covering: title, problem, 
 $CLI state write "$SPEC_DIR" '{"id":"<ID>","slug":"<slug>","phase":"spec","branch":"specifico/<ID>-<slug>","createdAt":"<ISO>","updatedAt":"<ISO>","completedTasks":[],"blockers":[]}'
 ```
 
+### 9.5. Record spec in journal
+
+```bash
+$CLI journal add-spec "$ID" "$SLUG" "<title>" "spec" "specifico/$ID-$SLUG" "<ISO>"
+```
+
 ### 10. Initialize DECISIONS.md
 
 Write an empty DECISIONS.md with a header:

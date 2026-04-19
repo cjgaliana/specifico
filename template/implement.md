@@ -53,6 +53,7 @@ If this exits with an error (BLOCK conflicts), **stop immediately**. Display the
 
 ```bash
 $CLI state transition "$SPEC_DIR" execute
+$CLI journal update-spec "$ID" "execute" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 ```
 
 This is a no-op if already in execute phase.
@@ -167,6 +168,7 @@ All tasks are implemented and all acceptance criteria pass.
 
 ```bash
 $CLI state transition "$SPEC_DIR" verify
+$CLI journal update-spec "$ID" "verify" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 ```
 
 Read state, set `verifyPassed: true`, write back.

@@ -55,6 +55,7 @@ $CLI git merge "specifico/<ID>-<slug>"
 
 ```bash
 $CLI state transition "$SPEC_DIR" merged
+$CLI journal update-spec "$ID" "merged" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 ```
 
 ### 6. Confirm

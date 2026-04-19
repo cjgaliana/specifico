@@ -28,8 +28,9 @@ There are no test or lint scripts configured.
 - [src/tasks.ts](src/tasks.ts) — Dependency graph for tasks, cycle detection, next-ready task calculation.
 - [src/git.ts](src/git.ts) — Wrapper over `simple-git`. Validates commit message format: `specifico(001/T003): <title>`.
 - [src/storage.ts](src/storage.ts) — File I/O for JSON/text, spec directory listing.
-- [src/id.ts](src/id.ts) — Monotonic counter (`.counter` file) for sequential spec IDs (`001`, `002`, …).
-- [src/types.ts](src/types.ts) — Zod schemas for all domain types: `Phase`, `State`, `Entity`, `ApiEndpoint`, `Spec`, `Plan`, `Task`, `Memory`, conflict types.
+- [src/id.ts](src/id.ts) — Next ID generation, delegates to journal for sequential spec IDs (`001`, `002`, …).
+- [src/journal.ts](src/journal.ts) — Journal registry (`journal.json`). Tracks all specs, their status, and phase. Provides ID generation by reading highest ID and incrementing.
+- [src/types.ts](src/types.ts) — Zod schemas for all domain types: `Phase`, `State`, `Entity`, `ApiEndpoint`, `Spec`, `Plan`, `Task`, `Memory`, `Journal`, conflict types.
 
 ### Template Slash Commands
 [template/](template/) contains `.md` files installed as Claude Code slash commands. Each command calls the bundled `cli.js` subprocess. Key commands: `init.md` (bootstrap memory from existing codebase), `spec.md`, `plan.md`, `tasks.md`, `implement.md`, `verify.md`, `merge.md`, `status.md`, `refine.md`, `memory-update.md`, `memory-rebuild.md`.
@@ -38,7 +39,7 @@ There are no test or lint scripts configured.
 ```
 specifico/
 ├── MEMORY.json          ← shared entity/API registry (conflict detection)
-├── .counter             ← monotonic ID source
+├── journal.json         ← registry of all specs with status tracking
 └── 001-feature-name/
     ├── SPEC.md + SPEC.json
     ├── PLAN.md + PLAN.json

@@ -85,6 +85,7 @@ Human-readable checklist. Show the dependency-ordered list. Mark each task with:
 
 ```bash
 $CLI state transition "$SPEC_DIR" tasks
+$CLI journal update-spec "$ID" "tasks" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 ```
 
 ### 9. Confirm

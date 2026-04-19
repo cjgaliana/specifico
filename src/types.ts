@@ -142,6 +142,23 @@ export const ConflictSchema = z.object({
 });
 export type Conflict = z.infer<typeof ConflictSchema>;
 
+export const JournalSpecSchema = z.object({
+  id: z.string(),
+  slug: z.string(),
+  title: z.string(),
+  phase: z.string(),
+  branch: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+});
+export type JournalSpec = z.infer<typeof JournalSpecSchema>;
+
+export const JournalSchema = z.object({
+  version: z.number(),
+  specs: z.array(JournalSpecSchema),
+});
+export type Journal = z.infer<typeof JournalSchema>;
+
 export const CliResultSchema = z.discriminatedUnion("success", [
   z.object({ success: z.literal(true), data: z.unknown() }),
   z.object({
