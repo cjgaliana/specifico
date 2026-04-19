@@ -804,10 +804,10 @@ var require_src2 = __commonJS({
     var fs_1 = require("fs");
     var debug_1 = __importDefault(require_src());
     var log = debug_1.default("@kwsites/file-exists");
-    function check(path7, isFile, isDirectory) {
-      log(`checking %s`, path7);
+    function check(path8, isFile, isDirectory) {
+      log(`checking %s`, path8);
       try {
-        const stat = fs_1.statSync(path7);
+        const stat = fs_1.statSync(path8);
         if (stat.isFile() && isFile) {
           log(`[OK] path represents a file`);
           return true;
@@ -827,8 +827,8 @@ var require_src2 = __commonJS({
         throw e;
       }
     }
-    function exists2(path7, type = exports2.READABLE) {
-      return check(path7, (type & exports2.FILE) > 0, (type & exports2.FOLDER) > 0);
+    function exists2(path8, type = exports2.READABLE) {
+      return check(path8, (type & exports2.FILE) > 0, (type & exports2.FOLDER) > 0);
     }
     exports2.exists = exists2;
     exports2.FILE = 1;
@@ -923,6 +923,9 @@ function readJson(filePath) {
 }
 function writeJson(filePath, data) {
   import_fs.default.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
+}
+function writeText(filePath, content) {
+  import_fs.default.writeFileSync(filePath, content, "utf-8");
 }
 function fileExists(filePath) {
   return import_fs.default.existsSync(filePath);
@@ -1409,8 +1412,8 @@ function getErrorMap() {
 
 // node_modules/zod/v3/helpers/parseUtil.js
 var makeIssue = (params) => {
-  const { data, path: path7, errorMaps, issueData } = params;
-  const fullPath = [...path7, ...issueData.path || []];
+  const { data, path: path8, errorMaps, issueData } = params;
+  const fullPath = [...path8, ...issueData.path || []];
   const fullIssue = {
     ...issueData,
     path: fullPath
@@ -1526,11 +1529,11 @@ var errorUtil;
 
 // node_modules/zod/v3/types.js
 var ParseInputLazyPath = class {
-  constructor(parent, value, path7, key) {
+  constructor(parent, value, path8, key) {
     this._cachedPath = [];
     this.parent = parent;
     this.data = value;
-    this._path = path7;
+    this._path = path8;
     this._key = key;
   }
   get path() {
@@ -5203,9 +5206,7 @@ function getNextId(projectRoot2) {
   if (journal.specs.length === 0) {
     return "001";
   }
-  const highestId = Math.max(
-    ...journal.specs.map((s) => parseInt(s.id, 10))
-  );
+  const highestId = Math.max(...journal.specs.map((s) => parseInt(s.id, 10)));
   const next = highestId + 1;
   return String(next).padStart(3, "0");
 }
@@ -5832,8 +5833,8 @@ function toLinesWithContent(input = "", trimmed2 = true, separator = "\n") {
 function forEachLineWithContent(input, callback) {
   return toLinesWithContent(input, true).map((line) => callback(line));
 }
-function folderExists(path7) {
-  return (0, import_file_exists.exists)(path7, import_file_exists.FOLDER);
+function folderExists(path8) {
+  return (0, import_file_exists.exists)(path8, import_file_exists.FOLDER);
 }
 function append(target, item) {
   if (Array.isArray(target)) {
@@ -6235,8 +6236,8 @@ function checkIsRepoRootTask() {
     commands,
     format: "utf-8",
     onError,
-    parser(path7) {
-      return /^\.(git)?$/.test(path7.trim());
+    parser(path8) {
+      return /^\.(git)?$/.test(path8.trim());
     }
   };
 }
@@ -6670,11 +6671,11 @@ function parseGrep(grep) {
   const paths = /* @__PURE__ */ new Set();
   const results = {};
   forEachLineWithContent(grep, (input) => {
-    const [path7, line, preview] = input.split(NULL);
-    paths.add(path7);
-    (results[path7] = results[path7] || []).push({
+    const [path8, line, preview] = input.split(NULL);
+    paths.add(path8);
+    (results[path8] = results[path8] || []).push({
       line: asNumber(line),
-      path: path7,
+      path: path8,
       preview
     });
   });
@@ -7438,14 +7439,14 @@ var init_hash_object = __esm({
     init_task();
   }
 });
-function parseInit(bare, path7, text) {
+function parseInit(bare, path8, text) {
   const response = String(text).trim();
   let result;
   if (result = initResponseRegex.exec(response)) {
-    return new InitSummary(bare, path7, false, result[1]);
+    return new InitSummary(bare, path8, false, result[1]);
   }
   if (result = reInitResponseRegex.exec(response)) {
-    return new InitSummary(bare, path7, true, result[1]);
+    return new InitSummary(bare, path8, true, result[1]);
   }
   let gitDir = "";
   const tokens = response.split(" ");
@@ -7456,7 +7457,7 @@ function parseInit(bare, path7, text) {
       break;
     }
   }
-  return new InitSummary(bare, path7, /^re/i.test(response), gitDir);
+  return new InitSummary(bare, path8, /^re/i.test(response), gitDir);
 }
 var InitSummary;
 var initResponseRegex;
@@ -7465,9 +7466,9 @@ var init_InitSummary = __esm({
   "src/lib/responses/InitSummary.ts"() {
     "use strict";
     InitSummary = class {
-      constructor(bare, path7, existing, gitDir) {
+      constructor(bare, path8, existing, gitDir) {
         this.bare = bare;
-        this.path = path7;
+        this.path = path8;
         this.existing = existing;
         this.gitDir = gitDir;
       }
@@ -7479,7 +7480,7 @@ var init_InitSummary = __esm({
 function hasBareCommand(command) {
   return command.includes(bareCommand);
 }
-function initTask(bare = false, path7, customArgs) {
+function initTask(bare = false, path8, customArgs) {
   const commands = ["init", ...customArgs];
   if (bare && !hasBareCommand(commands)) {
     commands.splice(1, 0, bareCommand);
@@ -7488,7 +7489,7 @@ function initTask(bare = false, path7, customArgs) {
     commands,
     format: "utf-8",
     parser(text) {
-      return parseInit(commands.includes("--bare"), path7, text);
+      return parseInit(commands.includes("--bare"), path8, text);
     }
   };
 }
@@ -8303,12 +8304,12 @@ var init_FileStatusSummary = __esm({
     "use strict";
     fromPathRegex = /^(.+)\0(.+)$/;
     FileStatusSummary = class {
-      constructor(path7, index, working_dir) {
-        this.path = path7;
+      constructor(path8, index, working_dir) {
+        this.path = path8;
         this.index = index;
         this.working_dir = working_dir;
         if (index === "R" || working_dir === "R") {
-          const detail = fromPathRegex.exec(path7) || [null, path7, path7];
+          const detail = fromPathRegex.exec(path8) || [null, path8, path8];
           this.from = detail[2] || "";
           this.path = detail[1] || "";
         }
@@ -8339,14 +8340,14 @@ function splitLine(result, lineStr) {
     default:
       return;
   }
-  function data(index, workingDir, path7) {
+  function data(index, workingDir, path8) {
     const raw = `${index}${workingDir}`;
     const handler = parsers6.get(raw);
     if (handler) {
-      handler(result, path7);
+      handler(result, path8);
     }
     if (raw !== "##" && raw !== "!!") {
-      result.files.push(new FileStatusSummary(path7, index, workingDir));
+      result.files.push(new FileStatusSummary(path8, index, workingDir));
     }
   }
 }
@@ -8697,9 +8698,9 @@ var init_simple_git_api = __esm({
           next
         );
       }
-      hashObject(path7, write) {
+      hashObject(path8, write) {
         return this._runTask(
-          hashObjectTask(path7, write === true),
+          hashObjectTask(path8, write === true),
           trailingFunctionArgument(arguments)
         );
       }
@@ -9053,8 +9054,8 @@ var init_branch = __esm({
   }
 });
 function toPath(input) {
-  const path7 = input.trim().replace(/^["']|["']$/g, "");
-  return path7 && (0, import_node_path.normalize)(path7);
+  const path8 = input.trim().replace(/^["']|["']$/g, "");
+  return path8 && (0, import_node_path.normalize)(path8);
 }
 var parseCheckIgnore;
 var init_CheckIgnore = __esm({
@@ -9339,8 +9340,8 @@ __export2(sub_module_exports, {
   subModuleTask: () => subModuleTask,
   updateSubModuleTask: () => updateSubModuleTask
 });
-function addSubModuleTask(repo, path7) {
-  return subModuleTask(["add", repo, path7]);
+function addSubModuleTask(repo, path8) {
+  return subModuleTask(["add", repo, path8]);
 }
 function initSubModuleTask(customArgs) {
   return subModuleTask(["init", ...customArgs]);
@@ -9654,8 +9655,8 @@ var require_git = __commonJS2({
       }
       return this._runTask(straightThroughStringTask2(command, this._trimmed), next);
     };
-    Git2.prototype.submoduleAdd = function(repo, path7, then) {
-      return this._runTask(addSubModuleTask2(repo, path7), trailingFunctionArgument2(arguments));
+    Git2.prototype.submoduleAdd = function(repo, path8, then) {
+      return this._runTask(addSubModuleTask2(repo, path8), trailingFunctionArgument2(arguments));
     };
     Git2.prototype.submoduleUpdate = function(args, then) {
       return this._runTask(
@@ -10427,6 +10428,185 @@ function validateNoCycles(tasks) {
   for (const task of tasks.tasks) dfs(task.id);
 }
 
+// src/memory-md.ts
+var import_fs3 = __toESM(require("fs"));
+var import_path7 = __toESM(require("path"));
+function memoryPath(projectRoot2) {
+  return import_path7.default.join(projectRoot2, "specifico", "MEMORY.md");
+}
+function initMemoryMarkdown(projectRoot2) {
+  ensureSpecificoDir(projectRoot2);
+  const mPath = memoryPath(projectRoot2);
+  if (!fileExists(mPath)) {
+    const template = `# Project Memory
+
+## Features
+
+(To be populated via merged specs)
+
+## Tech Stack
+
+(To be identified during \`/specifico:init\`)
+
+## Patterns
+
+(To be documented as specs are merged)
+
+## Conventions
+
+(To be documented as specs are merged)
+
+## Architectural Decisions
+
+(To be documented as specs are merged)
+`;
+    writeText(mPath, template);
+  }
+}
+function readMemoryMarkdown(projectRoot2) {
+  ensureSpecificoDir(projectRoot2);
+  const mPath = memoryPath(projectRoot2);
+  if (!fileExists(mPath)) {
+    initMemoryMarkdown(projectRoot2);
+  }
+  const content = import_fs3.default.readFileSync(mPath, "utf-8");
+  return parseMemoryMarkdown(content);
+}
+function parseMemoryMarkdown(content) {
+  const memory = {
+    features: [],
+    techStack: [],
+    patterns: [],
+    conventions: [],
+    architecturalDecisions: []
+  };
+  let currentSection = "";
+  const lines = content.split("\n");
+  for (const line of lines) {
+    const trimmed2 = line.trim();
+    if (trimmed2 === "## Features") currentSection = "features";
+    else if (trimmed2 === "## Tech Stack") currentSection = "techStack";
+    else if (trimmed2 === "## Patterns") currentSection = "patterns";
+    else if (trimmed2 === "## Conventions") currentSection = "conventions";
+    else if (trimmed2 === "## Architectural Decisions")
+      currentSection = "architecturalDecisions";
+    else if (trimmed2.startsWith("- ") && currentSection) {
+      const item = trimmed2.substring(2).trim();
+      if (item && !item.startsWith("(To be")) {
+        if (currentSection === "features") memory.features.push(item);
+        else if (currentSection === "techStack") memory.techStack.push(item);
+        else if (currentSection === "patterns") memory.patterns.push(item);
+        else if (currentSection === "conventions")
+          memory.conventions.push(item);
+        else if (currentSection === "architecturalDecisions")
+          memory.architecturalDecisions.push(item);
+      }
+    }
+  }
+  return memory;
+}
+function addFeatureToMemory(projectRoot2, featureTitle, featureSlug, featureDescription) {
+  ensureSpecificoDir(projectRoot2);
+  const mPath = memoryPath(projectRoot2);
+  if (!fileExists(mPath)) {
+    initMemoryMarkdown(projectRoot2);
+  }
+  let content = import_fs3.default.readFileSync(mPath, "utf-8");
+  const featureEntry = `- **${featureTitle}** (\`${featureSlug}\`): ${featureDescription}`;
+  const featuresSectionRegex = /(## Features\n\n)([\s\S]*?)(\n## )/;
+  const match = content.match(featuresSectionRegex);
+  if (match) {
+    const beforeSection = match[1];
+    const currentFeatures = match[2].trim();
+    const afterSection = match[3];
+    let newFeatures = currentFeatures;
+    if (currentFeatures.includes("(To be populated") || currentFeatures.trim() === "") {
+      newFeatures = featureEntry;
+    } else {
+      newFeatures = currentFeatures + "\n" + featureEntry;
+    }
+    content = content.replace(
+      featuresSectionRegex,
+      beforeSection + newFeatures + "\n" + afterSection
+    );
+  }
+  writeText(mPath, content);
+}
+function updateTechStackInMemory(projectRoot2, techItems) {
+  ensureSpecificoDir(projectRoot2);
+  const mPath = memoryPath(projectRoot2);
+  if (!fileExists(mPath)) {
+    initMemoryMarkdown(projectRoot2);
+  }
+  let content = import_fs3.default.readFileSync(mPath, "utf-8");
+  const techSection = techItems.map((t2) => `- ${t2}`).join("\n");
+  const techStackRegex = /(## Tech Stack\n\n)([\s\S]*?)(\n## )/;
+  const match = content.match(techStackRegex);
+  if (match) {
+    const beforeSection = match[1];
+    const afterSection = match[3];
+    content = content.replace(
+      techStackRegex,
+      beforeSection + techSection + "\n" + afterSection
+    );
+  }
+  writeText(mPath, content);
+}
+function addPatternToMemory(projectRoot2, pattern) {
+  ensureSpecificoDir(projectRoot2);
+  const mPath = memoryPath(projectRoot2);
+  if (!fileExists(mPath)) {
+    initMemoryMarkdown(projectRoot2);
+  }
+  let content = import_fs3.default.readFileSync(mPath, "utf-8");
+  const patternEntry = `- ${pattern}`;
+  const patternsRegex = /(## Patterns\n\n)([\s\S]*?)(\n## )/;
+  const match = content.match(patternsRegex);
+  if (match) {
+    const beforeSection = match[1];
+    const currentPatterns = match[2].trim();
+    const afterSection = match[3];
+    let newPatterns = currentPatterns;
+    if (currentPatterns.includes("(To be documented") || currentPatterns.trim() === "") {
+      newPatterns = patternEntry;
+    } else if (!currentPatterns.includes(patternEntry)) {
+      newPatterns = currentPatterns + "\n" + patternEntry;
+    }
+    content = content.replace(
+      patternsRegex,
+      beforeSection + newPatterns + "\n" + afterSection
+    );
+  }
+  writeText(mPath, content);
+}
+function addConventionToMemory(projectRoot2, convention) {
+  ensureSpecificoDir(projectRoot2);
+  const mPath = memoryPath(projectRoot2);
+  if (!fileExists(mPath)) {
+    initMemoryMarkdown(projectRoot2);
+  }
+  let content = import_fs3.default.readFileSync(mPath, "utf-8");
+  const conventionEntry = `- ${convention}`;
+  const conventionsRegex = /(## Conventions\n\n)([\s\S]*?)(\n## )/;
+  const match = content.match(conventionsRegex);
+  if (match) {
+    const beforeSection = match[1];
+    const currentConventions = match[2].trim();
+    const afterSection = match[3];
+    let newConventions = currentConventions;
+    if (currentConventions.includes("(To be documented") || currentConventions.trim() === "") {
+      newConventions = conventionEntry;
+    } else if (!currentConventions.includes(conventionEntry)) {
+      newConventions = currentConventions + "\n" + conventionEntry;
+    }
+    content = content.replace(
+      conventionsRegex,
+      beforeSection + newConventions + "\n" + afterSection
+    );
+  }
+  writeText(mPath, content);
+}
+
 // src/index.ts
 var projectRoot = process.cwd();
 function ok(data) {
@@ -10497,7 +10677,13 @@ async function main() {
         const conflicts2 = detectConflicts(memory, delta);
         const hasBlockers = conflicts2.some((c3) => c3.severity === "block");
         if (hasBlockers) {
-          console.error(JSON.stringify({ success: false, error: "Conflicts detected", conflicts: conflicts2 }));
+          console.error(
+            JSON.stringify({
+              success: false,
+              error: "Conflicts detected",
+              conflicts: conflicts2
+            })
+          );
           process.exit(1);
         }
         return ok({ conflicts: conflicts2 });
@@ -10508,7 +10694,13 @@ async function main() {
         const conflicts2 = detectConflicts(memory, delta);
         const hasBlockers = conflicts2.some((c3) => c3.severity === "block");
         if (hasBlockers) {
-          console.error(JSON.stringify({ success: false, error: "Conflicts detected", conflicts: conflicts2 }));
+          console.error(
+            JSON.stringify({
+              success: false,
+              error: "Conflicts detected",
+              conflicts: conflicts2
+            })
+          );
           process.exit(1);
         }
         const updated = applyDelta(memory, delta);
@@ -10529,7 +10721,13 @@ async function main() {
         const spec = readSpec(specDir);
         const missing = validateCompleteness(spec);
         if (missing.length > 0) {
-          console.error(JSON.stringify({ success: false, error: "Incomplete spec", missing }));
+          console.error(
+            JSON.stringify({
+              success: false,
+              error: "Incomplete spec",
+              missing
+            })
+          );
           process.exit(1);
         }
         return ok({ valid: true });
@@ -10598,6 +10796,55 @@ async function main() {
         return ok(journal);
       }
       return fail(`Unknown journal subcommand: ${sub}`);
+    }
+    if (cmd === "memory-md") {
+      const sub = args[0];
+      if (sub === "init") {
+        initMemoryMarkdown(projectRoot);
+        return ok({ memory: "MEMORY.md initialized" });
+      }
+      if (sub === "read") {
+        ensureSpecificoDir(projectRoot);
+        return ok(readMemoryMarkdown(projectRoot));
+      }
+      if (sub === "add-feature") {
+        const title = args[1];
+        const slug = args[2];
+        const description = args[3];
+        if (!title || !slug || !description) {
+          return fail(
+            "memory-md add-feature requires: title slug description"
+          );
+        }
+        addFeatureToMemory(projectRoot, title, slug, description);
+        return ok({ feature: "added to MEMORY.md" });
+      }
+      if (sub === "update-tech-stack") {
+        const techJson = args[1];
+        if (!techJson) {
+          return fail("memory-md update-tech-stack requires: tech-json-array");
+        }
+        const techItems = JSON.parse(techJson);
+        updateTechStackInMemory(projectRoot, techItems);
+        return ok({ techStack: "updated in MEMORY.md" });
+      }
+      if (sub === "add-pattern") {
+        const pattern = args.slice(1).join(" ");
+        if (!pattern) {
+          return fail("memory-md add-pattern requires: pattern-text");
+        }
+        addPatternToMemory(projectRoot, pattern);
+        return ok({ pattern: "added to MEMORY.md" });
+      }
+      if (sub === "add-convention") {
+        const convention = args.slice(1).join(" ");
+        if (!convention) {
+          return fail("memory-md add-convention requires: convention-text");
+        }
+        addConventionToMemory(projectRoot, convention);
+        return ok({ convention: "added to MEMORY.md" });
+      }
+      return fail(`Unknown memory-md subcommand: ${sub}`);
     }
     fail(`Unknown command: ${cmd}`);
   } catch (err) {

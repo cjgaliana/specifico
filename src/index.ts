@@ -22,6 +22,14 @@ import {
   updateSpecInJournal,
   rebuildJournalFromDirectory,
 } from "./journal";
+import {
+  initMemoryMarkdown,
+  readMemoryMarkdown,
+  addFeatureToMemory,
+  updateTechStackInMemory,
+  addPatternToMemory,
+  addConventionToMemory,
+} from "./memory-md";
 import { MemoryDeltaSchema, StateSchema, Phase } from "./types";
 import { ensureSpecificoDir, findSpecDirById } from "./storage";
 
@@ -234,6 +242,56 @@ async function main(): Promise<void> {
         return ok(journal);
       }
       return fail(`Unknown journal subcommand: ${sub}`);
+    }
+
+    // ── MEMORY-MD ─────────────────────────────────────────────────────────
+    if (cmd === "memory-md") {
+      const sub = args[0];
+
+      if (sub === "init") {
+        initMemoryMarkdown(projectRoot);
+        return ok({ memory: "MEMORY.md initialized" });
+      }
+      if (sub === "read") {
+        ensureSpecificoDir(projectRoot);
+        return ok(readMemoryMarkdown(projectRoot));
+      }
+      if (sub === "add-feature") {
+        const title = args[1];
+        const slug = args[2];
+        const description = args[3];
+        if (!title || !slug || !description) {
+          return fail("memory-md add-feature requires: title slug description");
+        }
+        addFeatureToMemory(projectRoot, title, slug, description);
+        return ok({ feature: "added to MEMORY.md" });
+      }
+      if (sub === "update-tech-stack") {
+        const techJson = args[1];
+        if (!techJson) {
+          return fail("memory-md update-tech-stack requires: tech-json-array");
+        }
+        const techItems = JSON.parse(techJson) as string[];
+        updateTechStackInMemory(projectRoot, techItems);
+        return ok({ techStack: "updated in MEMORY.md" });
+      }
+      if (sub === "add-pattern") {
+        const pattern = args.slice(1).join(" ");
+        if (!pattern) {
+          return fail("memory-md add-pattern requires: pattern-text");
+        }
+        addPatternToMemory(projectRoot, pattern);
+        return ok({ pattern: "added to MEMORY.md" });
+      }
+      if (sub === "add-convention") {
+        const convention = args.slice(1).join(" ");
+        if (!convention) {
+          return fail("memory-md add-convention requires: convention-text");
+        }
+        addConventionToMemory(projectRoot, convention);
+        return ok({ convention: "added to MEMORY.md" });
+      }
+      return fail(`Unknown memory-md subcommand: ${sub}`);
     }
 
     fail(`Unknown command: ${cmd}`);

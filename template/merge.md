@@ -58,12 +58,29 @@ $CLI state transition "$SPEC_DIR" merged
 $CLI journal update-spec "$ID" "merged" "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 ```
 
-### 6. Confirm
+### 6. Update MEMORY.md with the merged feature
+
+Read the spec to extract its title and problem statement:
+
+```bash
+SPEC=$(cat "$SPEC_DIR/SPEC.json")
+TITLE=$(echo "$SPEC" | jq -r '.title')
+PROBLEM=$(echo "$SPEC" | jq -r '.problem')
+SLUG=$(echo "$SPEC" | jq -r '.slug')
+```
+
+Add the feature to MEMORY.md:
+
+```bash
+$CLI memory-md add-feature "$TITLE" "$SLUG" "$PROBLEM"
+```
+
+### 7. Confirm
 
 ```
 ✓ Spec <ID>-<slug> merged successfully.
+  Feature added to MEMORY.md
 
 Recommended next steps:
-  /specifico:memory-update <ID>   — sync this spec's entities/APIs into global memory
   /specifico:status               — view remaining active specs
 ```
