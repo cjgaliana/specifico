@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 export function ensureSpecificoDir(projectRoot: string): void {
-  const dir = path.join(projectRoot, "specifico");
+  const dir = path.join(projectRoot, ".specifico");
   fs.mkdirSync(dir, { recursive: true });
 }
 
@@ -11,7 +11,7 @@ export function specDirPath(
   id: string,
   slug: string
 ): string {
-  return path.join(projectRoot, "specifico", `${id}-${slug}`);
+  return path.join(projectRoot, ".specifico", `${id}-${slug}`);
 }
 
 export function ensureSpecDir(
@@ -28,7 +28,7 @@ export function findSpecDirById(
   projectRoot: string,
   id: string
 ): string | null {
-  const specifico = path.join(projectRoot, "specifico");
+  const specifico = path.join(projectRoot, ".specifico");
   if (!fs.existsSync(specifico)) return null;
   const entries = fs.readdirSync(specifico, { withFileTypes: true });
   for (const entry of entries) {
@@ -40,7 +40,7 @@ export function findSpecDirById(
 }
 
 export function listAllSpecDirs(projectRoot: string): string[] {
-  const specifico = path.join(projectRoot, "specifico");
+  const specifico = path.join(projectRoot, ".specifico");
   if (!fs.existsSync(specifico)) return [];
   return fs
     .readdirSync(specifico, { withFileTypes: true })

@@ -17,7 +17,7 @@ PROJECT_ROOT="$(pwd)"
 
 ### If no arguments (show all specs)
 
-List all spec directories under `$PROJECT_ROOT/specifico/`. For each, read `STATE.json` and `TASKS.json` (if exists). Display a summary table:
+List all spec directories under `$PROJECT_ROOT/.specifico/`. For each, read `STATE.json` and `TASKS.json` (if exists). Display a summary table:
 
 ```
 ID    SLUG                  PHASE     TASKS      BRANCH

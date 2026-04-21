@@ -899,11 +899,11 @@ var import_path3 = __toESM(require("path"));
 var import_fs = __toESM(require("fs"));
 var import_path = __toESM(require("path"));
 function ensureSpecificoDir(projectRoot2) {
-  const dir = import_path.default.join(projectRoot2, "specifico");
+  const dir = import_path.default.join(projectRoot2, ".specifico");
   import_fs.default.mkdirSync(dir, { recursive: true });
 }
 function findSpecDirById(projectRoot2, id) {
-  const specifico = import_path.default.join(projectRoot2, "specifico");
+  const specifico = import_path.default.join(projectRoot2, ".specifico");
   if (!import_fs.default.existsSync(specifico)) return null;
   const entries = import_fs.default.readdirSync(specifico, { withFileTypes: true });
   for (const entry of entries) {
@@ -914,7 +914,7 @@ function findSpecDirById(projectRoot2, id) {
   return null;
 }
 function listAllSpecDirs(projectRoot2) {
-  const specifico = import_path.default.join(projectRoot2, "specifico");
+  const specifico = import_path.default.join(projectRoot2, ".specifico");
   if (!import_fs.default.existsSync(specifico)) return [];
   return import_fs.default.readdirSync(specifico, { withFileTypes: true }).filter((e) => e.isDirectory() && /^\d{3}-/.test(e.name)).sort((a, b2) => a.name.localeCompare(b2.name)).map((e) => import_path.default.join(specifico, e.name));
 }
@@ -5141,7 +5141,7 @@ function transition(specDir, toPhase) {
 
 // src/journal.ts
 function journalPath(projectRoot2) {
-  return import_path3.default.join(projectRoot2, "specifico", "journal.json");
+  return import_path3.default.join(projectRoot2, ".specifico", "journal.json");
 }
 function initJournal(projectRoot2) {
   ensureSpecificoDir(projectRoot2);
@@ -10270,12 +10270,12 @@ function emptyMemory() {
   };
 }
 function readMemory(projectRoot2) {
-  const filePath = import_path5.default.join(projectRoot2, "specifico", MEMORY_FILE);
+  const filePath = import_path5.default.join(projectRoot2, ".specifico", MEMORY_FILE);
   if (!fileExists(filePath)) return emptyMemory();
   return MemorySchema.parse(readJson(filePath));
 }
 function writeMemory(projectRoot2, memory) {
-  const filePath = import_path5.default.join(projectRoot2, "specifico", MEMORY_FILE);
+  const filePath = import_path5.default.join(projectRoot2, ".specifico", MEMORY_FILE);
   writeJson(filePath, memory);
 }
 function detectConflicts(memory, delta) {
@@ -10432,7 +10432,7 @@ function validateNoCycles(tasks) {
 var import_fs3 = __toESM(require("fs"));
 var import_path7 = __toESM(require("path"));
 function memoryPath(projectRoot2) {
-  return import_path7.default.join(projectRoot2, "specifico", "MEMORY.md");
+  return import_path7.default.join(projectRoot2, ".specifico", "MEMORY.md");
 }
 function initMemoryMarkdown(projectRoot2) {
   ensureSpecificoDir(projectRoot2);

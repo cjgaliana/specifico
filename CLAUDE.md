@@ -38,7 +38,7 @@ There are no test or lint scripts configured.
 
 ### Storage Layout (inside the user's project)
 ```
-specifico/
+.specifico/
 ├── MEMORY.md            ← project memory (tech stack, features, patterns, conventions, decisions)
 ├── MEMORY.json          ← contract memory for entities and API endpoints
 ├── journal.json         ← registry of all specs with status tracking

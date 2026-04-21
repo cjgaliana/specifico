@@ -13,7 +13,7 @@ Note: this command initializes and refreshes project context memory (`MEMORY.md`
 ```bash
 CLI="node $(dirname $0)/cli.js"
 PROJECT_ROOT="$(pwd)"
-SPECIFICO_DIR="$PROJECT_ROOT/specifico"
+SPECIFICO_DIR="$PROJECT_ROOT/.specifico"
 MEMORY_FILE="$SPECIFICO_DIR/MEMORY.md"
 ```
 
@@ -24,7 +24,7 @@ MEMORY_FILE="$SPECIFICO_DIR/MEMORY.md"
 If `$MEMORY_FILE` exists, warn the user:
 
 ```
-⚠ specifico/MEMORY.md already exists.
+⚠ .specifico/MEMORY.md already exists.
   Running /specifico:init will overwrite it with a fresh scan of the codebase.
   Any memory accumulated from merged specs will be lost.
 
@@ -157,7 +157,7 @@ $CLI memory-md add-pattern "Server-side session management"
 ```
 ✓ Specifico initialized
 
-  specifico/MEMORY.md written
+  .specifico/MEMORY.md written
   Tech stack:      <N> technologies identified
   Existing features: <M> features documented
 

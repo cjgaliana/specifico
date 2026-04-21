@@ -68,7 +68,7 @@ $CLI memory apply-delta '<delta-json>'
 ✓ Memory updated from spec <ID>-<slug>
   Entities: N added/updated
   API endpoints: M added/updated
-  MEMORY.json: specifico/MEMORY.json
+  MEMORY.json: .specifico/MEMORY.json
 
 Next step: /specifico:merge <ID>
 ```

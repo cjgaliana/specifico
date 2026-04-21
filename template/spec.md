@@ -17,8 +17,8 @@ PROJECT_ROOT="$(pwd)"
 
 ### 1. Read existing memory
 
-Read `$PROJECT_ROOT/specifico/MEMORY.json` if it exists for existing entities and API endpoints.
-Read `$PROJECT_ROOT/specifico/MEMORY.md` if it exists for project features, architecture patterns, and conventions relevant to this feature.
+Read `$PROJECT_ROOT/.specifico/MEMORY.json` if it exists for existing entities and API endpoints.
+Read `$PROJECT_ROOT/.specifico/MEMORY.md` if it exists for project features, architecture patterns, and conventions relevant to this feature.
 
 ### 2. Get the next spec ID
 
@@ -52,7 +52,7 @@ From MEMORY.json, show the user any existing entities or API endpoints that over
 
 ```bash
 SLUG="<derived-slug>"
-SPEC_DIR="$PROJECT_ROOT/specifico/${ID}-${SLUG}"
+SPEC_DIR="$PROJECT_ROOT/.specifico/${ID}-${SLUG}"
 mkdir -p "$SPEC_DIR"
 $CLI git branch-create "specifico/${ID}-${SLUG}"
 ```
@@ -112,7 +112,7 @@ Print a summary:
 ```
 ✓ Spec <ID>-<slug> created
   Branch: specifico/<ID>-<slug>
-  Dir:    specifico/<ID>-<slug>/
+  Dir:    .specifico/<ID>-<slug>/
   Phase:  spec
 
 Next step: /specifico:plan

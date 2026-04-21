@@ -23,7 +23,7 @@ BRANCH=$($CLI git current-branch | jq -r '.data')
 # Extract ID from "specifico/001-user-auth" → "001"
 ```
 
-Find the spec directory: `$PROJECT_ROOT/specifico/<ID>-<slug>/`
+Find the spec directory: `$PROJECT_ROOT/.specifico/<ID>-<slug>/`
 
 ### 2. Validate prerequisite phase
 
@@ -47,7 +47,7 @@ If validation fails (missing fields), list them and stop. Do not proceed until t
 ### 4. Read context
 
 - Read `$SPEC_DIR/SPEC.json` — full spec
-- Read `$PROJECT_ROOT/specifico/MEMORY.json` — existing entities/APIs
+- Read `$PROJECT_ROOT/.specifico/MEMORY.json` — existing entities/APIs
 - Read the current codebase for relevant existing patterns
 
 ### 5. Draft the plan

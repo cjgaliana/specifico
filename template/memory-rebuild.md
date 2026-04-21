@@ -18,7 +18,7 @@ PROJECT_ROOT="$(pwd)"
 ### 1. Warn the user
 
 ```
-⚠ This will overwrite specifico/MEMORY.json entirely by re-processing all merged specs.
+⚠ This will overwrite .specifico/MEMORY.json entirely by re-processing all merged specs.
   Any manual edits to MEMORY.json will be lost.
 
 Proceed? (yes/no)

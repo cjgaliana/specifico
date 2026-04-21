@@ -11,7 +11,7 @@ export interface ProjectMemory {
 }
 
 function memoryPath(projectRoot: string): string {
-  return path.join(projectRoot, "specifico", "MEMORY.md");
+  return path.join(projectRoot, ".specifico", "MEMORY.md");
 }
 
 export function initMemoryMarkdown(projectRoot: string): void {

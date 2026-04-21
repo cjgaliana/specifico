@@ -23,13 +23,13 @@ function emptyMemory(): Memory {
 }
 
 export function readMemory(projectRoot: string): Memory {
-  const filePath = path.join(projectRoot, "specifico", MEMORY_FILE);
+  const filePath = path.join(projectRoot, ".specifico", MEMORY_FILE);
   if (!fileExists(filePath)) return emptyMemory();
   return MemorySchema.parse(readJson(filePath));
 }
 
 export function writeMemory(projectRoot: string, memory: Memory): void {
-  const filePath = path.join(projectRoot, "specifico", MEMORY_FILE);
+  const filePath = path.join(projectRoot, ".specifico", MEMORY_FILE);
   writeJson(filePath, memory);
 }
 

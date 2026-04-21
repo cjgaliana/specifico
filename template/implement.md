@@ -77,7 +77,7 @@ TASK=$($CLI tasks next "$SPEC_DIR" | jq '.data')
 
 ### B. Implement the task
 
-Read the task's `title` and `description`. Read `$SPEC_DIR/PLAN.json` for architectural guidance. Read `$PROJECT_ROOT/specifico/MEMORY.json` for entity/API contracts to follow exactly.
+Read the task's `title` and `description`. Read `$SPEC_DIR/PLAN.json` for architectural guidance. Read `$PROJECT_ROOT/.specifico/MEMORY.json` for entity/API contracts to follow exactly.
 
 Write the code. Follow the plan's component structure. Do not deviate from established entity schemas or API contracts in MEMORY.json.
 

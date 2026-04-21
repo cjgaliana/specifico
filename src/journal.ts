@@ -19,7 +19,7 @@ export interface Journal {
 }
 
 function journalPath(projectRoot: string): string {
-  return path.join(projectRoot, "specifico", "journal.json");
+  return path.join(projectRoot, ".specifico", "journal.json");
 }
 
 export function initJournal(projectRoot: string): Journal {
